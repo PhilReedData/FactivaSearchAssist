@@ -1,15 +1,20 @@
 {
   "name": "Factiva Search Assist",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Build a Factiva news search faster, reading from a line in a spreadsheet.",
   "icons": { "128": "icon.png" },
   "background": { "scripts": ["background.js"] },
   "content_scripts": [
-    { "matches": ["http://*/*"], "js": ["factivasearchassist_content_script.js"] }
+    { "matches": ["http://*/*"],
+      "js": [
+	    "factivasearchassist_content_script.js"
+	  ] 
+	}
   ],
   "permissions": [
     "tabs",
-    "https://global.factiva.com/*"
+    "https://global.factiva.com/*",
+	"https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"
   ],
   "page_action": {
       "default_name": "Factiva Search Assist",

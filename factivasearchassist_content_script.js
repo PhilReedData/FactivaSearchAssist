@@ -1,33 +1,20 @@
 //factivacrx_content_script.js
 // Do something on the Factiva webpage
 
-// Create a li element with a button with jQuery commands to set the criteria.
-function makeLiForQuery(company, dateString) {
-  // assume dateString is YYYY-MM-DD
-  var d = dateString.substring(8,10);
-  var m = dateString.substring(5,7);
-  var y = dateString.substring(0,4);
-  li = "<li><button type='button' onclick=\"$('#dr').val('Custom');$('#dr').trigger('change');$('#frd').val('";
-  li = li + d + "');$('#frm').val('" + m + "');$('#fry').val('" + y + "');$('#tod').val('";
-  li = li + d + "');$('#tom').val('" + m + "');$('#toy').val('" + y + "');$('#coTxt').val('";
-  li = li + company + "');return false;\">";
-  li = li + company + ", " + dateString + "</button></li>";
-  return li;
-}
+////// CANNOT ADD SCRIPTS FROM OTHER SITES!
+//document.writeln("<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js'></script>");
+//// CANNOT GET chome.tabs TO WORK
+//chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//  $.get("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js", function(result) {
+//    chrome.tabs.executeScript(tabs[0].id, {code: result});
+//  }, "text");
+//});
 
-//var contentLeft = document.querySelector('div#contentLeft');
 var navTop = document.querySelector('#gl-navContainer');
-
-var importedString = "<div id='importedSpace'>";
-importedString += "<p>Open the Company\u25B6 section, then click a button below to load up a query. ";
-importedString += "Company is not fully selected, you must click in the text field, press Space then selet the best match.</p>";
-//importedString += "<button type='button' onclick=\"$('#coTab .pnlTabArrow').trigger('click');return false;\">Show/hide company field</button>";
-importedString += "<p>Imported queries:</p><ol>";
-importedString += makeLiForQuery("Apple Inc.", "2016-10-02");
-importedString += makeLiForQuery("Apple Inc.", "2016-10-05");
-importedString += "</ol></div>";
-//contentLeft.innerHTML += importedString;
-navTop.outerHTML += importedString;
+fileSelectorHTML =  "<div id='uploader'>Select Excel file with requests: ";
+fileSelectorHTML += "<input type='file' id='fileUpload0'/>";
+fileSelectorHTML += "<input type='button' onclick='UploadRequestsTable()' value='Upload requests xlsx' /></div>";
+navTop.outerHTML += fileSelectorHTML;
 
 
 ////// FROM OLD TOOL CRX

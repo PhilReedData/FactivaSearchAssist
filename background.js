@@ -15,3 +15,8 @@ function checkURL(tabId, info, tab) {
     }
 }
 chrome.tabs.onUpdated.addListener(checkURL);
+//
+//chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//  $.get("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js", function(result) {
+//    chrome.tabs.executeScript(tabs[0].id, {code: result});
+//  }, "text");
